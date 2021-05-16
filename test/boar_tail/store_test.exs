@@ -6,8 +6,8 @@ defmodule BoarTail.StoreTest do
   describe "items" do
     alias BoarTail.Store.Items
 
-    @valid_attrs %{cost: "120.5", description: "some description", id: "7488a646-e31f-11e4-aace-600308960662", name: "some name"}
-    @update_attrs %{cost: "456.7", description: "some updated description", id: "7488a646-e31f-11e4-aace-600308960668", name: "some updated name"}
+    @valid_attrs %{cost: "120.5", description: "some description", name: "some name"}
+    @update_attrs %{cost: "456.7", description: "some updated description", name: "some updated name"}
     @invalid_attrs %{cost: nil, description: nil, id: nil, name: nil}
 
     def items_fixture(attrs \\ %{}) do
@@ -33,7 +33,6 @@ defmodule BoarTail.StoreTest do
       assert {:ok, %Items{} = items} = Store.create_items(@valid_attrs)
       assert items.cost == Decimal.new("120.5")
       assert items.description == "some description"
-      assert items.id == "7488a646-e31f-11e4-aace-600308960662"
       assert items.name == "some name"
     end
 
@@ -46,7 +45,6 @@ defmodule BoarTail.StoreTest do
       assert {:ok, %Items{} = items} = Store.update_items(items, @update_attrs)
       assert items.cost == Decimal.new("456.7")
       assert items.description == "some updated description"
-      assert items.id == "7488a646-e31f-11e4-aace-600308960668"
       assert items.name == "some updated name"
     end
 

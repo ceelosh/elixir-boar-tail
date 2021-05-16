@@ -7,6 +7,7 @@ defmodule BoarTailWeb.Router do
 
   scope "/api", BoarTailWeb do
     pipe_through :api
+    resources "/items", ItemsController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

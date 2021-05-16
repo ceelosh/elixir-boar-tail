@@ -2,10 +2,11 @@ defmodule BoarTail.Store.Items do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.UUID, autogenerate: true}
+
   schema "items" do
     field :cost, :decimal
     field :description, :string
-    field :id, Ecto.UUID
     field :name, :string
 
     timestamps()
@@ -14,7 +15,7 @@ defmodule BoarTail.Store.Items do
   @doc false
   def changeset(items, attrs) do
     items
-    |> cast(attrs, [:id, :name, :description, :cost])
-    |> validate_required([:id, :name, :description, :cost])
+    |> cast(attrs, [:name, :description, :cost])
+    |> validate_required([:name, :description, :cost])
   end
 end
